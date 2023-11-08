@@ -1,3 +1,5 @@
+const notificationPreferences = getNotificationPreferences();
+
 setInterval(() => {
     let timeSinceLastMessage = (Date.now() - $("#chatMessageField").attr("data-cooldown"));
 
@@ -30,6 +32,12 @@ addEventListener("keypress", event => {
 socket.on("chat_message", (username, message) => {
 
     addPlayerChatMessage(username, message);
+
+    // if (document.hidden) {
+    //     if (notificationPreferences.all) {
+
+    //     } else if (notificationPreferences.mentions && message.includes(`@${username}`))
+    // }
 
 });
 

@@ -18,6 +18,10 @@ hr {
     margin: 0px;
 }
 
+#backButton {
+    margin-bottom: 20px;
+}
+
 #profileCard {
     margin-bottom: 20px;
     text-align: center;

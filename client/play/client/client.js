@@ -1,5 +1,5 @@
 const roomCode = location.pathname.split("/").at(-1);
-const sessionToken = document.cookie.match(/(?<=survgame_session_token=).+?(?=;|$)/)[0];
+const sessionToken = getCookie("survgame_session_token");
 
 let socket = io("wss://survsocket.wintrcat.uk/");
 
