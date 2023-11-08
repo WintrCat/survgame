@@ -1,5 +1,3 @@
-const notificationPreferences = getNotificationPreferences();
-
 setInterval(() => {
     let timeSinceLastMessage = (Date.now() - $("#chatMessageField").attr("data-cooldown"));
 
@@ -33,11 +31,19 @@ socket.on("chat_message", (username, message) => {
 
     addPlayerChatMessage(username, message);
 
-    // if (document.hidden) {
-    //     if (notificationPreferences.all) {
+    let mentioned = message.toLowerCase().includes("@" + tokenUsername.toLowerCase());
 
-    //     } else if (notificationPreferences.mentions && message.includes(`@${username}`))
-    // }
+    if (document.hidden) {
+        if (notificationPreferences.all) {
+            Notification.requestPermission().then(() => {
+                new Notification(username + " sent a message to the room chat.", {"icon": "/media/favicon.ico"})
+            });
+        } else if (notificationPreferences.mentions && mentioned) {
+            Notification.requestPermission().then(() => {
+                new Notification(username + " mentioned you in the room chat.", {"icon": "/media/favicon.ico"});
+            });
+        }
+    }
 
 });
 

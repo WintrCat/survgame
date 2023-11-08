@@ -1,5 +1,6 @@
 const chatBox = document.querySelector("#chatMessagesArea");
 
+const notificationPreferences = getNotificationPreferences();
 let notificationCount = 0;
 
 function addPlayerChatMessage(username, message) {

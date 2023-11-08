@@ -2,7 +2,7 @@
  * @description Returns an object with each cookie as a key-value pair
  */
 function getCookies() {
-    let pairs = document.cookie.match(/[^;].+?=.+?(?=;|$)/g);
+    let pairs = document.cookie.match(/[^; ].+?=.+?(?=;|$)/g);
     return Object.fromEntries(pairs.map(pair => pair.split("=")));
 }
 
@@ -27,8 +27,8 @@ function getNotificationPreferences() {
     let preferences = {};
 
     preferences.mentions = getCookie("survgame_notifications_mentions", "true") == "true";
-    preferences.system = getCookie("survgame_notifications_mentions") == "true";
-    preferences.all = getCookie("survgame_notifications_mentions") == "true";
+    preferences.system = getCookie("survgame_notifications_system") == "true";
+    preferences.all = getCookie("survgame_notifications_all") == "true";
 
     return preferences;
 }

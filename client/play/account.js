@@ -1,11 +1,14 @@
 let tokenUsername;
 
 fetch("/api/profile", {
-    "method": "GET"
+    "method": "POST",
+    "headers": {
+        "Content-Type": "application/json"
+    }
 }).then(async res => {
     let profile = await res.json();
 
     tokenUsername = profile.username;
 
-    $("#connectionMessage").html(`Connected to ${roomCode.toUpperCase()} as ${username}`);
+    $("#connectionMessage").html(`Connected to ${roomCode.toUpperCase()} as ${tokenUsername}`);
 });
