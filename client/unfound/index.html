@@ -1,32 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
+
 <head>
-    <title>survgame - Land of the Lost</title>
+<title>survgame - Land of the Lost</title>
+<link rel="icon" href="/media/favicon.ico">
 
-    <link rel="icon" href="/media/favicon.ico">
+<!-- Just get rid of pieces of my CSS in style, to replace font-size, font family or more -->
+<link rel="stylesheet" href="/static/global.css">
+<link rel="stylesheet" href="/static/unfound/index.css">
 
-    <link rel="stylesheet" href="/static/global.css">
-    <link rel="stylesheet" href="/static/unfound/index.css">
 
-    <audio id="track" src="/media/secret.mp3"></audio>
+<style>
+/* Head + Body */
+head, body {
+    margin: 0;
+    text-align: center;
+    font-family: 'Lucida Sans';
+    overflow: hidden;
+}
+
+/* Content */
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Record Player Box */
+#recordPlayerBox {
+    margin: 5vh 0vw 5vh 0vw;
+}
+
+/* Record Player */
+#recordPlayer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50vw;
+    height: auto;
+}
+
+/* Headings */
+h1 {
+    font-size: 4vw;
+}
+
+h2 {
+    font-size: 3vw;
+}
+
+h3 {
+    font-size: 2.5vw;
+    color: blue;
+}
+</style>
 </head>
 <body>
-    <div id="content">
-        <h1 id="title">survgame</h1>
+<!-- Audio -->
+<audio id="track" src="/media/secret.mp3"></audio>
+<!-- Content of the page! -->
+<div id="content">
+    <h1>SurvGame</h1>
+    <h2>404 - Page not found</h2>
 
-        <h1 style="margin:0">404 - Page not found</h1>
+    <a href="https://surv.wintrcat.uk/dash"><h3>Back Home</h3></a>
 
-        <h2><a href="/dash">Back Home</a></h2>
-
-        <div id="recordPlayer">
-            <button id="playButton" class="blue btn">▶</button>
-        </div>
-
-        <button id="resetButton" class="blue btn">Restart</button>
+    <div id="recordPlayerBox">
+        <img id="recordPlayer" src="asset.png" onclick="spin()">
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- I HAVE NO IDEA HOW TO USE THIS OR WHAT THIS IS, I TRUST YOU KNOW -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <script src="/static/unfound/record.js"></script>
+<!-- Script -->
+<script>
+let recordPlayer = null;
+let rotation = 0;
+
+let track = document.querySelector("#track");
+
+function spin() {
+    if (!recordPlayer) {
+        track.play();
+        recordPlayer = setInterval(() => {
+            document.querySelector("#recordPlayer").style.transform = "rotate("+rotation+"deg)";
+            rotation = (rotation + 1) % 360;
+        }, 10);
+    } else {
+        recordPlayer = clearInterval(recordPlayer);
+        track.pause();
+    }
+}
+</script>
 </body>
 </html>
